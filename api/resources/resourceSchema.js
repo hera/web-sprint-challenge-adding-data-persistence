@@ -1,5 +1,5 @@
 
-const projectSchema = {
+const resourceSchema = {
     type: "object",
     strict: true,
     properties: {
@@ -10,12 +10,8 @@ const projectSchema = {
         Description: {
             type: "string",
             optional: true
-        },
-        IsCompleted: {
-            type: "boolean",
-            optional: true
         }
     }
 }
 
-module.exports = projectSchema;
+module.exports = resourceSchema;
