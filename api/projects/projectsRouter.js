@@ -2,7 +2,7 @@ const express = require("express");
 const projectsModel = require("./projectsModel");
 const inspector = require("schema-inspector");
 
-const projectSchema = require("../../schemas/projectSchema");
+const projectSchema = require("./projectSchema");
 
 const router = express.Router();
 
@@ -10,7 +10,7 @@ const router = express.Router();
 // Get all projects
 
 router.get("/", (req, res) => {
-    projectsModel.getAllProjects()
+    projectsModel.getProjects()
         .then(projects => {
             res.status(200).json(projects);
         })

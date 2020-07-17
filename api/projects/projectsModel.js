@@ -1,11 +1,11 @@
 const db = require("../../data/dbConfig");
 
 module.exports = {
-    getAllProjects,
+    getProjects,
     addProject
 };
 
-function getAllProjects () {
+function getProjects () {
     return db("Project");
 }
 
