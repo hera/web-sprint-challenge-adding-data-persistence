@@ -8,7 +8,6 @@ exports.up = function(knex) {
                 .notNullable();
             table.text('Description')
             table.boolean("IsCompleted")
-                .notNullable()
                 .defaultTo(false);
         })
         .createTable("Resource", table => {
@@ -23,7 +22,6 @@ exports.up = function(knex) {
                 .notNullable();
             table.text('Notes');
             table.boolean("IsCompleted")
-                .notNullable()
                 .defaultTo(false);
             table.integer("ProjectId")
                 .unsigned()
@@ -37,12 +35,16 @@ exports.up = function(knex) {
                 .unsigned()
                 .notNullable()
                 .references("Id")
-                .inTable("Project");
+                .inTable("Project")
+                .onUpdate('CASCADE')
+                .onDelete('CASCADE');
             table.integer("ResourceId")
                 .unsigned()
                 .notNullable()
                 .references("Id")
-                .inTable("Resource");
+                .inTable("Resource")
+                .onUpdate('CASCADE')
+                .onDelete('CASCADE');
         });
 };
 
