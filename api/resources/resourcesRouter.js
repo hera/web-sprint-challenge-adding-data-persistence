@@ -24,6 +24,22 @@ router.get("/", (req, res) => {
 });
 
 
+// Get all projects for a given resource id
+
+router.get("/:id/", (req, res) => {
+    resourcesModel.getProjectsByResourceId(req.params.id)
+        .then(projects => {
+            res.status(200).json(projects);
+        })
+        .catch(error => {
+            res.status(500).json({
+                error: "Server error. Could not get projects.",
+                description: error
+            });
+        });
+});
+
+
 // Add a new resource
 
 router.post("/", (req, res) => {
