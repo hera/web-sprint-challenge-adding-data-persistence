@@ -22,6 +22,9 @@ router.get("/", (req, res) => {
         });
 });
 
+
+// Get all tasks for a given project id
+
 router.get("/:id/tasks", (req, res) => {
     projectsModel.getTasksByProjectId(req.params.id)
         .then(tasks => {
@@ -30,6 +33,22 @@ router.get("/:id/tasks", (req, res) => {
         .catch(error => {
             res.status(500).json({
                 error: "Server error. Could not get tasks.",
+                description: error
+            });
+        });
+});
+
+
+// Get all resources for a given project id
+
+router.get("/:id/resources", (req, res) => {
+    projectsModel.getResourcesByProjectId(req.params.id)
+        .then(resources => {
+            res.status(200).json(resources);
+        })
+        .catch(error => {
+            res.status(500).json({
+                error: "Server error. Could not get resources.",
                 description: error
             });
         });

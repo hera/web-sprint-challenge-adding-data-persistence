@@ -4,7 +4,8 @@ module.exports = {
     getProjects,
     getProjectById,
     addProject,
-    getTasksByProjectId
+    getTasksByProjectId,
+    getResourcesByProjectId
 };
 
 function getProjects () {
@@ -26,5 +27,12 @@ function addProject (data) {
 
 function getTasksByProjectId (ProjectId) {
     return db("Task")
+        .where({ProjectId});
+}
+
+function getResourcesByProjectId (ProjectId) {
+    return db("ProjectResource")
+        .select("Resource.Id", "Resource.Name", "Resource.Description")
+        .join("Resource", "ProjectResource.ResourceId", "=", "Resource.Id")
         .where({ProjectId});
 }
