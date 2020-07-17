@@ -22,6 +22,19 @@ router.get("/", (req, res) => {
         });
 });
 
+router.get("/:id/tasks", (req, res) => {
+    projectsModel.getTasksByProjectId(req.params.id)
+        .then(tasks => {
+            res.status(200).json(tasks);
+        })
+        .catch(error => {
+            res.status(500).json({
+                error: "Server error. Could not get tasks.",
+                description: error
+            });
+        });
+});
+
 
 // Add a new project
 
